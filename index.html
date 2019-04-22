@@ -2,19 +2,20 @@
 <html lang="en-us">
     <head>
         <title>RPS</title>
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Dokdo" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     </head>
 
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 text-center mt-4">
-                    <h1>Rock, Paper, Scissors</h1>
+                <div class="col-md-12 text-center mt-4 title-text">
                 </div>
             </div>
         </div>
@@ -54,7 +55,7 @@
                 <form>
                     <div class="form-group">
                       <label for="exampleInputEmail1" id="send-message">Send Message</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Message">
+                      <input type="text" class="form-control message-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Message">
                     </div>
                     <button type="submit" class="btn btn-primary submit-message">Send</button>
                   </form>
@@ -62,7 +63,7 @@
         </div>
         <div class="row mt-3 ml-3">
             <div class="col-md-5 fader fade-none message-host">
-                <p>Player 1: your turn</p>
+                <p id="messages" class="text-center">Messages</p>
             </div>
         </div>
 

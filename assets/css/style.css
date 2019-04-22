@@ -52,6 +52,13 @@ h2 {
     border-radius: 20%;
 }
 
+#messages {
+    text-decoration: underline;
+    font-family: 'Fresca', sans-serif;
+    font-size: 20px;
+    color:rgb(110, 190, 236);
+}
+
 .fade-in {
     -webkit-animation: fadein 2s;
 }
