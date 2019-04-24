@@ -86,13 +86,15 @@ setTimeout(chooseMessage, 2000);
 // on click player 1 logic
 $(document).on("click", "#choice-1", function(e) {
     e.preventDefault();
-    $(".remove-1").html("");
-
+    playerCount++;
+    
+    var removeP1Btn = "";
     var p1Rock = "p1-rock";
     var p1Paper = "p1-paper";
     var p1Scissors = "p1-scissors";
 
     database.ref().push({
+        removeP1Btn: removeP1Btn,
         p1Rock: p1Rock,
         p1Paper: p1Paper,
         p1Scissors: p1Scissors
@@ -103,22 +105,53 @@ $(document).on("click", "#choice-1", function(e) {
         console.log(childSnapshot.val().p1Paper);
         console.log(childSnapshot.val().p1Scissors);
 
+        $(".remove-1").html(childSnapshot.val().removeP1Btn);
         $("#rock-1").addClass(childSnapshot.val().p1Rock);
         $("#paper-1").addClass(childSnapshot.val().p1Paper);
         $("#scissors-1").addClass(childSnapshot.val().p1Scissors);
     });
 });
 
-$(".p1-rock").on("click", function() {
+$(document).on("click", ".p1-rock", function() {
     console.log("player 1 chose rock");
-})
+});
 
 //on click player 2 logic
 $(document).on("click", "#choice-2", function(e) {
     e.preventDefault();
-    $(".remove-2").html("");
+    playerCount++;
 
+    var removeP2Btn = "";
+    var p2Rock = "p2-rock";
+    var p2Paper = "p2-paper";
+    var p2Scissors = "p2-scissors";
+
+    database.ref().push({
+        removeP2Btn: removeP2Btn,
+        p2Rock: p2Rock,
+        p2Paper: p2Paper,
+        p2Scissors: p2Scissors
+    });
+
+    database.ref().on("child_added", function(childSnapshot) {
+        console.log(childSnapshot.val().p2Rock);
+        console.log(childSnapshot.val().p2Paper);
+        console.log(childSnapshot.val().p2Scissors);
+
+        $(".remove-2").html(childSnapshot.val().removeP2Btn);
+        $("#rock-2").addClass(childSnapshot.val().p2Rock);
+        $("#paper-2").addClass(childSnapshot.val().p2Paper);
+        $("#scissors-2").addClass(childSnapshot.val().p2Scissors);
+    });
 });
+
+$(document).on("click", ".p2-rock", function() {
+    console.log("player 2 chose rock");
+});
+
+if (playerCount === 2) {
+    alert("get ready to begin");
+}
 
 //User messages logic 
  $(".submit-message").on("click", function(e) {
