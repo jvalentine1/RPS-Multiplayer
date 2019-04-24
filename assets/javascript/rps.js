@@ -169,8 +169,12 @@ database.ref().on("child_added", function(childSnapshot) {
     $(".remove-2").html(childSnapshot.val().removeP2Btn);
 });
 
+$(document).on("click", ".p2-rock", function() {
+    console.log("player 2 chose rock");
+});
+
+//Player Count logic that makes the game ready to play
 database.ref().on("value", function(childSnapshot) {
-    console.log(childSnapshot.val().playerCounter);
     var playersReady = childSnapshot.val().playerCounter;
 
     if (playersReady === 2) {
@@ -178,9 +182,10 @@ database.ref().on("value", function(childSnapshot) {
     }
 });
 
-$(document).on("click", ".p2-rock", function() {
-    console.log("player 2 chose rock");
-});
+database.ref().on("value", function(childSnapshot) {
+    playerCount = childSnapshot.val().playerCounter;
+    console.log(playerCount);
+})
 
 //User messages logic 
  $(".submit-message").on("click", function(e) {
