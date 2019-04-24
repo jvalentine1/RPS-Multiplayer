@@ -104,12 +104,15 @@ $(document).on("click", "#choice-1", function(e) {
         console.log(childSnapshot.val().p1Rock);
         console.log(childSnapshot.val().p1Paper);
         console.log(childSnapshot.val().p1Scissors);
-
-        $(".remove-1").html(childSnapshot.val().removeP1Btn);
+        
         $("#rock-1").addClass(childSnapshot.val().p1Rock);
         $("#paper-1").addClass(childSnapshot.val().p1Paper);
         $("#scissors-1").addClass(childSnapshot.val().p1Scissors);
     });
+});
+
+database.ref().on("child_added", function(childSnapshot) {
+    $(".remove-1").html(childSnapshot.val().removeP1Btn);
 });
 
 $(document).on("click", ".p1-rock", function() {
@@ -138,20 +141,24 @@ $(document).on("click", "#choice-2", function(e) {
         console.log(childSnapshot.val().p2Paper);
         console.log(childSnapshot.val().p2Scissors);
 
-        $(".remove-2").html(childSnapshot.val().removeP2Btn);
+        
         $("#rock-2").addClass(childSnapshot.val().p2Rock);
         $("#paper-2").addClass(childSnapshot.val().p2Paper);
         $("#scissors-2").addClass(childSnapshot.val().p2Scissors);
     });
 });
 
+database.ref().on("child_added", function(childSnapshot) {
+    $(".remove-2").html(childSnapshot.val().removeP2Btn);
+});
+
 $(document).on("click", ".p2-rock", function() {
     console.log("player 2 chose rock");
 });
 
-if (playerCount === 2) {
-    alert("get ready to begin");
-}
+// if (playerCount === 2) {
+//     alert("get ready to begin");
+// }
 
 //User messages logic 
  $(".submit-message").on("click", function(e) {
