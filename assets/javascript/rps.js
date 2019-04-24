@@ -86,6 +86,9 @@ setTimeout(chooseMessage, 2000);
 // on click player 1 logic
 $(document).on("click", "#choice-1", function(e) {
     e.preventDefault();
+    $(".startClick-p1").html("YOU");
+    $(".startClick-p2").html("Opponent");
+
     playerCount++;
     
     var removeP1Btn = "";
@@ -124,6 +127,9 @@ $(document).on("click", ".p1-rock", function() {
 //on click player 2 logic
 $(document).on("click", "#choice-2", function(e) {
     e.preventDefault();
+    $(".startClick-p2").html("YOU");
+    $(".startClick-p1").html("Opponent");
+    
     playerCount++;
 
     var removeP2Btn = "";
