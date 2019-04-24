@@ -27,6 +27,10 @@ var pl2Losses = 0;
 
 //title populate function
 function openPage() {
+    // database.ref().push({
+    //     playerCount: playerCount
+    // });
+
     setInterval(titleRender, 50);
 }
 
@@ -88,8 +92,11 @@ $(document).on("click", "#choice-1", function(e) {
     e.preventDefault();
     $(".startClick-p1").html("YOU");
     $(".startClick-p2").html("Opponent");
-
     playerCount++;
+
+    database.ref("/playerCount").set({
+        playerCount: playerCount
+    });
  
     var removeP1Btn = "";
     var p1Rock = "p1-rock";
@@ -99,7 +106,6 @@ $(document).on("click", "#choice-1", function(e) {
     $(".remove-2").html("");
 
     database.ref().push({
-        playerCount:playerCount,
         removeP1Btn: removeP1Btn,
         p1Rock: p1Rock,
         p1Paper: p1Paper,
@@ -130,8 +136,11 @@ $(document).on("click", "#choice-2", function(e) {
     e.preventDefault();
     $(".startClick-p2").html("YOU");
     $(".startClick-p1").html("Opponent");
-
     playerCount++;
+
+    database.ref("/playerCount").set({
+        playerCount: playerCount
+    });
 
     var removeP2Btn = "";
     var p2Rock = "p2-rock";
