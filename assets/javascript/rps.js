@@ -63,7 +63,7 @@ function chooseMessage() {
     var chooseAlert = $("<h3>");
     chooseAlert.addClass("fade-in");
     chooseAlert.text("Select A Player To Begin");
-//creates a div with player choice info and allows it to be removed once chosen
+//creates a div with player choice info and allows it to be removed once chosen, creates button divs and assigns them classes to be referenced
     var b1 = $("<div>");
     b1.addClass("remove-1")
     var button1 = $("<button>");
@@ -150,7 +150,6 @@ $(document).on("click", "#choice-2", function(e) {
     $(".remove-1").html("");
 
     database.ref().push({
-        playerCount: playerCount,
         removeP2Btn: removeP2Btn,
         p2Rock: p2Rock,
         p2Paper: p2Paper,
