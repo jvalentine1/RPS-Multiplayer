@@ -19,13 +19,12 @@ var titleElement = $("<h1>");
 var titleCount = 0;
 
 //Game logic variables
-var playerCount = 0;
+// var count = 0;
 var pl1Wins = 0;
 var pl1Losses = 0;
 var pl2Wins = 0;
 var pl2Losses = 0;
-var p1Ready = false;
-var p2Ready = false;
+
 
 //title populate function
 function openPage() {
@@ -77,7 +76,7 @@ function chooseMessage() {
     button2.addClass("fade-in");
     button2.attr("id", "choice-2");
     button2.text("Player 2");
-    b2.append(button2)
+    b2.append(button2);
 
     $(".comp-messages").append(chooseAlert);
     $(".comp-messages").append(b1);
@@ -86,15 +85,20 @@ function chooseMessage() {
 
 setTimeout(chooseMessage, 2000);
 
+
+database.ref().on("value", function(childSnapshot) {
+    count = childSnapshot.val().playerCounter;
+})
+
 // on click player 1 logic
 $(document).on("click", "#choice-1", function(e) {
     e.preventDefault();
     $(".startClick-p1").html("YOU");
     $(".startClick-p2").html("Opponent");
 
-    var ready1 = true;
-    database.ref().push({
-        player1ready: ready1
+    count++
+    database.ref().set({
+        playerCounter: count
     });
 
     var removeP1Btn = "";
@@ -130,16 +134,15 @@ $(document).on("click", ".p1-rock", function() {
     console.log("player 1 chose rock");
 });
 
+
+
+
+
 //on click player 2 logic
 $(document).on("click", "#choice-2", function(e) {
     e.preventDefault();
     $(".startClick-p2").html("YOU");
     $(".startClick-p1").html("Opponent");
-    
-    var ready2 = true;
-    database.ref().push({
-        player2ready: ready2
-    });
 
     var removeP2Btn = "";
     var p2Rock = "p2-rock";
@@ -147,6 +150,11 @@ $(document).on("click", "#choice-2", function(e) {
     var p2Scissors = "p2-scissors";
 
     $(".remove-1").html("");
+
+    count++
+    database.ref().set({
+        playerCounter: count
+    });
 
     database.ref().push({
         removeP2Btn: removeP2Btn,
@@ -175,15 +183,12 @@ $(document).on("click", ".p2-rock", function() {
     console.log("player 2 chose rock");
 });
 
-//Player Count logic that makes the game ready to play
-database.ref().on("child_added", function(childSnapshot) {
-    var p1Ready = childSnapshot.val().player1ready;
-    var p2Ready = childSnapshot.val().player2ready;
+//I had to get creative with this function because I had to figure out how to increment the count with different buttons on both ends
 
-    if (p1Ready && p2Ready) {
-        alert("game ready");
-    }
-});
+
+
+
+
 
 //User messages logic 
  $(".submit-message").on("click", function(e) {
