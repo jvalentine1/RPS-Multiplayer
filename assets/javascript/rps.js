@@ -27,9 +27,6 @@ var pl2Losses = 0;
 
 //title populate function
 function openPage() {
-    // database.ref().push({
-    //     playerCount: playerCount
-    // });
 
     setInterval(titleRender, 50);
 }
@@ -173,6 +170,7 @@ database.ref().on("child_added", function(childSnapshot) {
 });
 
 database.ref().on("value", function(childSnapshot) {
+    console.log(childSnapshot.val().playerCounter);
     var playersReady = childSnapshot.val().playerCounter;
 
     if (playersReady === 2) {
