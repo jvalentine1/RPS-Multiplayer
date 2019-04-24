@@ -94,8 +94,8 @@ $(document).on("click", "#choice-1", function(e) {
     $(".startClick-p2").html("Opponent");
     playerCount++;
 
-    database.ref().push({
-        playerCount: playerCount
+    database.ref().set({
+        playerCounter: playerCount
     });
  
     var removeP1Btn = "";
@@ -138,8 +138,8 @@ $(document).on("click", "#choice-2", function(e) {
     $(".startClick-p1").html("Opponent");
     playerCount++;
 
-    database.ref().push({
-        playerCount: playerCount
+    database.ref().set({
+        playerCounter: playerCount
     });
 
     var removeP2Btn = "";
@@ -172,8 +172,8 @@ database.ref().on("child_added", function(childSnapshot) {
     $(".remove-2").html(childSnapshot.val().removeP2Btn);
 });
 
-database.ref().on("child_added", function(childSnapshot) {
-    var playersReady = childSnapshot.val().playerCount;
+database.ref().on("value", function(childSnapshot) {
+    var playersReady = childSnapshot.val().playerCounter;
 
     if (playersReady === 2) {
         alert("game ready");
