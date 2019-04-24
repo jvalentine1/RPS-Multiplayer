@@ -93,7 +93,7 @@ $(document).on("click", "#choice-1", function(e) {
     $(".startClick-p2").html("Opponent");
 
     var ready1 = true;
-    database.ref().set({
+    database.ref().push({
         player1ready: ready1
     });
 
@@ -137,7 +137,7 @@ $(document).on("click", "#choice-2", function(e) {
     $(".startClick-p1").html("Opponent");
     
     var ready2 = true;
-    database.ref().set({
+    database.ref().push({
         player2ready: ready2
     });
 
