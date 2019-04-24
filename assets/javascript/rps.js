@@ -88,6 +88,10 @@ setTimeout(chooseMessage, 2000);
 
 database.ref().on("value", function(childSnapshot) {
     count = childSnapshot.val().playerCounter;
+
+    if (count === 2) {
+        alert("get ready");
+    }
 })
 
 // on click player 1 logic
