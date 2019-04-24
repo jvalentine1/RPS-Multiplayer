@@ -24,6 +24,8 @@ var pl1Wins = 0;
 var pl1Losses = 0;
 var pl2Wins = 0;
 var pl2Losses = 0;
+var p1Ready = false;
+var p2Ready = false;
 
 //title populate function
 function openPage() {
@@ -89,12 +91,12 @@ $(document).on("click", "#choice-1", function(e) {
     e.preventDefault();
     $(".startClick-p1").html("YOU");
     $(".startClick-p2").html("Opponent");
-    playerCount++;
 
+    var ready1 = true;
     database.ref().set({
-        playerCounter: playerCount
+        player1ready: ready1
     });
- 
+
     var removeP1Btn = "";
     var p1Rock = "p1-rock";
     var p1Paper = "p1-paper";
@@ -133,10 +135,10 @@ $(document).on("click", "#choice-2", function(e) {
     e.preventDefault();
     $(".startClick-p2").html("YOU");
     $(".startClick-p1").html("Opponent");
-    playerCount++;
-
+    
+    var ready2 = true;
     database.ref().set({
-        playerCounter: playerCount
+        player2ready: ready2
     });
 
     var removeP2Btn = "";
@@ -174,18 +176,14 @@ $(document).on("click", ".p2-rock", function() {
 });
 
 //Player Count logic that makes the game ready to play
-database.ref().on("value", function(childSnapshot) {
-    var playersReady = childSnapshot.val().playerCounter;
+database.ref().on("child_added", function(childSnapshot) {
+    var p1Ready = childSnapshot.val().player1ready;
+    var p2Ready = childSnapshot.val().player2ready;
 
-    if (playersReady === 2) {
+    if (p1Ready && p2Ready) {
         alert("game ready");
     }
 });
-
-database.ref().on("value", function(childSnapshot) {
-    playerCount = childSnapshot.val().playerCounter;
-    console.log(playerCount);
-})
 
 //User messages logic 
  $(".submit-message").on("click", function(e) {
@@ -203,7 +201,6 @@ database.ref().on("value", function(childSnapshot) {
  });
 
  database.ref().on("child_added", function(childSnapshot) {
-    console.log(childSnapshot.val());
 
     var p = $("<p>");
     p.addClass("text-left");
