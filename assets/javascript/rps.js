@@ -93,6 +93,8 @@ $(document).on("click", "#choice-1", function(e) {
     var p1Paper = "p1-paper";
     var p1Scissors = "p1-scissors";
 
+    $(".remove-2").html("");
+
     database.ref().push({
         removeP1Btn: removeP1Btn,
         p1Rock: p1Rock,
@@ -128,6 +130,8 @@ $(document).on("click", "#choice-2", function(e) {
     var p2Rock = "p2-rock";
     var p2Paper = "p2-paper";
     var p2Scissors = "p2-scissors";
+
+    $(".remove-1").html("");
 
     database.ref().push({
         removeP2Btn: removeP2Btn,
