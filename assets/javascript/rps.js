@@ -90,7 +90,7 @@ $(document).on("click", "#choice-1", function(e) {
     $(".startClick-p2").html("Opponent");
 
     playerCount++;
-    
+ 
     var removeP1Btn = "";
     var p1Rock = "p1-rock";
     var p1Paper = "p1-paper";
@@ -99,6 +99,7 @@ $(document).on("click", "#choice-1", function(e) {
     $(".remove-2").html("");
 
     database.ref().push({
+        playerCount:playerCount,
         removeP1Btn: removeP1Btn,
         p1Rock: p1Rock,
         p1Paper: p1Paper,
@@ -129,7 +130,7 @@ $(document).on("click", "#choice-2", function(e) {
     e.preventDefault();
     $(".startClick-p2").html("YOU");
     $(".startClick-p1").html("Opponent");
-    
+
     playerCount++;
 
     var removeP2Btn = "";
@@ -140,6 +141,7 @@ $(document).on("click", "#choice-2", function(e) {
     $(".remove-1").html("");
 
     database.ref().push({
+        playerCount: playerCount,
         removeP2Btn: removeP2Btn,
         p2Rock: p2Rock,
         p2Paper: p2Paper,
@@ -162,13 +164,17 @@ database.ref().on("child_added", function(childSnapshot) {
     $(".remove-2").html(childSnapshot.val().removeP2Btn);
 });
 
+database.ref().on("child_added", function(childSnapshot) {
+    var playersReady = childSnapshot.val().playerCount;
+
+    if (playersReady === 2) {
+        alert("game ready");
+    }
+});
+
 $(document).on("click", ".p2-rock", function() {
     console.log("player 2 chose rock");
 });
-
-// if (playerCount === 2) {
-//     alert("get ready to begin");
-// }
 
 //User messages logic 
  $(".submit-message").on("click", function(e) {
