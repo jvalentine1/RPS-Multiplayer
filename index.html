@@ -20,8 +20,8 @@
             </div>
         </div>
         <div class="row mt-2">
-            <div class="col-md-4 text-center fader fade-none">
-                <h2>Player 1</h2>
+            <div class="col-md-4 text-center fader fade-none player-1-field">
+                <h2 class="startClick-p1">Player 1</h2>
                 <div class="stats-1 mt-4">
                 <span id="wins">Wins:0</span>
                 <span id="losses">Losses:0</span>
@@ -34,9 +34,9 @@
                     <button type="button" id="scissors-1" class="btn btn-secondary">Scissors</button>
                 </div>
             </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4 text-center fader fade-none">
-                <h2>Player 2</h2>
+            <div class="col-md-4 text-center mt-5 comp-messages"></div>
+            <div class="col-md-4 text-center fader fade-none player-2-field">
+                <h2 class="startClick-p2">Player 2</h2>
                 <div class="stats-2 mt-4">
                 <span id="wins-2">Wins:0</span>
                 <span id="losses-2">Losses:0</span>
@@ -51,7 +51,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-5 mt-5 ml-3 fader fade-none">
+            <div class="col-md-12 text-center mt-5 fader fade-none">
+                    <button type="submit" class="btn btn-primary mb-2 reset-game">Reset Game</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 mt-2 ml-3 fader fade-none">
                 <form>
                     <div class="form-group">
                       <label for="exampleInputEmail1" id="send-message">Send Message</label>
