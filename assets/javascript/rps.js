@@ -94,7 +94,7 @@ $(document).on("click", "#choice-1", function(e) {
     $(".startClick-p2").html("Opponent");
     playerCount++;
 
-    database.ref("playerCount").push({
+    database.ref().push({
         playerCount: playerCount
     });
  
@@ -138,7 +138,7 @@ $(document).on("click", "#choice-2", function(e) {
     $(".startClick-p1").html("Opponent");
     playerCount++;
 
-    database.ref("playerCount").push({
+    database.ref().push({
         playerCount: playerCount
     });
 
@@ -172,7 +172,7 @@ database.ref().on("child_added", function(childSnapshot) {
     $(".remove-2").html(childSnapshot.val().removeP2Btn);
 });
 
-database.ref("playerCount").on("child_added", function(childSnapshot) {
+database.ref().on("child_added", function(childSnapshot) {
     var playersReady = childSnapshot.val().playerCount;
 
     if (playersReady === 2) {
