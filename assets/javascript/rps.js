@@ -226,7 +226,12 @@ function checkScore(){
 //message for player 2 turn
 function player2Turn() {
 
-    database.ref().on("child_added", function() {
+    count++
+    database.ref().set({
+        playerCounter: count
+    });
+
+    database.ref().on("value", function() {
         var turnDiv = $("<h3>");
         turnDiv.html("Player 2 Go");
         $(".comp-messages").html(turnDiv);
