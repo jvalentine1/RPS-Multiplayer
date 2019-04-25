@@ -228,6 +228,7 @@ $(document).on("click", ".p2-scissors", function() {
     });
 });
 
+//pushes player 2 choice to array
 database.ref().on("child_added", function(childSnapshot) {
     hand2 = childSnapshot.val().p2Choice;
     pHand2.unshift(hand2);
@@ -235,6 +236,7 @@ database.ref().on("child_added", function(childSnapshot) {
     checkScore();
 });
 
+//pushes player 1 choice to an array
 database.ref().on("child_added", function(childSnapshot) {
     hand1 = childSnapshot.val().p1Choice;
     pHand1.unshift(hand1); 
@@ -242,7 +244,7 @@ database.ref().on("child_added", function(childSnapshot) {
     checkScore();
 });
 
-//Checks score 
+//Checks score by refrencing player choice array
 function checkScore(){
     if (pHand2[0] === "rock" && pHand1[0] === "rock") {
         console.log("tie");
@@ -252,6 +254,24 @@ function checkScore(){
     }
     else if (pHand2[0] === "scissors" && pHand1[0] === "scissors") {
         console.log("tie");
+    }
+    else if (pHand2[0] === "rock" && pHand1[0] === "paper") {
+        console.log("p1 wins");
+    }
+    else if (pHand2[0] === "paper" && pHand1[0] === "scissors") {
+        console.log("p1 wins");
+    }
+    else if (pHand2[0] === "scissors" && pHand1[0] === "rock") {
+        console.log("p1 wins");
+    }
+    else if (pHand2[0] === "rock" && pHand1[0] === "scissors") {
+        console.log("p2 wins");
+    }
+    else if (pHand2[0] === "paper" && pHand1[0] === "rock") {
+        console.log("p2 wins");
+    }
+    else if (pHand2[0] === "scissors" && pHand1[0] === "paper") {
+        console.log("p2 wins");
     }
 };
 
