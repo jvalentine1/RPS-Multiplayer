@@ -189,6 +189,7 @@ $(document).on("click", ".p1-rock", function() {
     database.ref().push({
         p1Choice: "rock"
     });
+    player2Turn();
 });
 
 
@@ -215,13 +216,22 @@ database.ref().on("child_added", function(childSnapshot) {
     checkScore();
 });
 
-
+//Checks score 
 function checkScore(){
     if (pHand2[0] === "rock" && pHand1[0] === "rock") {
         console.log("tie");
     }
 };
 
+//message for player 2 turn
+function player2Turn() {
+
+    database.ref().on("child_added", function() {
+        var turnDiv = $("<h3>");
+        turnDiv.html("Player 2 Go");
+        $(".comp-messages").html(turnDiv);
+    });
+}
 
 
 //User messages logic 
