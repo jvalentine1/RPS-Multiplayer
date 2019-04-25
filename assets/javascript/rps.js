@@ -24,6 +24,7 @@ var pl1Wins = 0;
 var pl1Losses = 0;
 var pl2Wins = 0;
 var pl2Losses = 0;
+var ties = 0;
 
 
 //title populate function
@@ -248,6 +249,15 @@ database.ref().on("child_added", function(childSnapshot) {
 function checkScore(){
     if (pHand2[0] === "rock" && pHand1[0] === "rock") {
         console.log("tie");
+        ties++;
+        database.ref().push({
+            ties: ties
+        });
+        database.ref().on("child_added", function(childSnapshot) {
+            var gameTie = childSnapshot.val().ties;
+            $("#ties").html("Ties:" + gameTie);
+        });
+
     }
     else if (pHand2[0] === "paper" && pHand1[0] === "paper") {
         console.log("tie");
