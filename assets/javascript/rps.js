@@ -253,7 +253,7 @@ function checkScore(){
         database.ref().push({
             ties: ties
         });
-        database.ref().on("child_added", function(childSnapshot) {
+        database.ref().on("value", function(childSnapshot) {
             var gameTie = childSnapshot.val().ties;
             $("#ties").html("Ties:" + gameTie);
         });
