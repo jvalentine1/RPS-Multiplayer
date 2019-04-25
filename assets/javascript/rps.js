@@ -136,12 +136,6 @@ database.ref().on("child_added", function(childSnapshot) {
     $(".remove-1").html(childSnapshot.val().removeP1Btn);
 });
 
-$(document).on("click", ".p1-rock", function() {
-    console.log("player 1 chose rock");
-});
-
-
-
 
 
 //on click player 2 logic
@@ -185,11 +179,37 @@ database.ref().on("child_added", function(childSnapshot) {
     $(".remove-2").html(childSnapshot.val().removeP2Btn);
 });
 
-$(document).on("click", ".p2-rock", function() {
-    console.log("player 2 chose rock");
+
+
+// Play Game logic
+
+$(document).on("click", ".p1-rock", function() {
+    database.ref().push({
+        p1Choice: "rock"
+    });
+    var startDiv = $("<h3>");
+    startDiv.text("Player 2 Go");
+    $(".comp-messages").html(startDiv);
 });
 
-//I had to get creative with this function because I had to figure out how to increment the count with different buttons on both ends
+$(document).on("click", ".p2-rock", function() {
+    database.ref().push({
+        p2Choice: "rock"
+    });
+});
+
+
+
+database.ref().on("child_added", function(childSnapshot) {
+    var hand1 = childSnapshot.val().p1Choice;
+    var hand2 = childSnapshot.val().p2Choice;
+
+    if (hand1 === "rock" && hand2 === "rock") {
+        alert("tie");
+    }
+    
+});
+
 
 
 
