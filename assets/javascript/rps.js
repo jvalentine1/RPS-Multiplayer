@@ -187,7 +187,10 @@ var pHand2 = [""];
 
 $(document).on("click", ".p1-rock", function() {
     database.ref().push({
-        p1Choice: "rock",
+        p1Choice: "rock"
+    });
+
+    database.ref().push({
         player2Go: "Player 2 Go"
     });
 });
@@ -217,9 +220,10 @@ database.ref().on("child_added", function(childSnapshot) {
 });
 
 database.ref().on("child_added", function(childSnapshot) {
-    var startDiv = $("<h3>");
-    startDiv.text(childSnapshot.val().player2Go);
-    $(".comp-messages").html(startDiv);
+    var x = childSnapshot.val().player2Go;
+    var nextMove = $("<h3>");
+    nextMove.text(x);
+    $(".comp-messages").html(nextMove);
 });
 
 
