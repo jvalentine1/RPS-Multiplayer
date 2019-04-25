@@ -90,7 +90,9 @@ database.ref().on("value", function(childSnapshot) {
     count = childSnapshot.val().playerCounter;
 
     if (count === 2) {
-        alert("get ready");
+        var startDiv = $("<h3>");
+        startDiv.text("Player 1 Go");
+        $(".comp-messages").html(startDiv);
     }
 })
 
