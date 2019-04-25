@@ -208,8 +208,23 @@ $(document).on("click", ".p1-paper", function() {
 
 //player 2 chose paper
 $(document).on("click", ".p2-paper", function() {
+    console.log("p2paper");
     database.ref().push({
         p2Choice: "paper"
+    });
+});
+
+//player 1 chose scissors
+$(document).on("click", ".p1-scissors", function() {
+    database.ref().push({
+        p1Choice: "scissors"
+    });
+});
+
+//player 2 chose scissors
+$(document).on("click", ".p2-scissors", function() {
+    database.ref().push({
+        p2Choice: "scissors"
     });
 });
 
@@ -233,6 +248,9 @@ function checkScore(){
         console.log("tie");
     }
     else if (pHand2[0] === "paper" && pHand1[0] === "paper") {
+        console.log("tie");
+    }
+    else if (pHand2[0] === "scissors" && pHand1[0] === "scissors") {
         console.log("tie");
     }
 };
