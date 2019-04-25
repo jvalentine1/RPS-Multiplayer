@@ -103,7 +103,7 @@ $(document).on("click", "#choice-1", function(e) {
     $(".startClick-p2").html("Opponent");
 
     count++
-    database.ref().set({
+    database.ref("/playerCounter").set({
         playerCounter: count
     });
 
@@ -152,7 +152,7 @@ $(document).on("click", "#choice-2", function(e) {
     $(".remove-1").html("");
 
     count++
-    database.ref().set({
+    database.ref("/playerCounter").set({
         playerCounter: count
     });
 
