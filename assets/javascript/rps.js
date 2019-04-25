@@ -189,10 +189,6 @@ $(document).on("click", ".p1-rock", function() {
     database.ref().push({
         p1Choice: "rock"
     });
-
-    database.ref().push({
-        player2Go: "Player 2 Go"
-    });
 });
 
 
@@ -217,13 +213,6 @@ database.ref().on("child_added", function(childSnapshot) {
     pHand1.unshift(hand1); 
     console.log(pHand1[0]);
     checkScore();
-});
-
-database.ref().on("child_added", function(childSnapshot) {
-    var x = childSnapshot.val().player2Go;
-    var nextMove = $("<h3>");
-    nextMove.text(x);
-    $(".comp-messages").html(nextMove);
 });
 
 
