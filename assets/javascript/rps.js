@@ -182,15 +182,17 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 // Play Game logic
+var pHand1 = [""];
+var pHand2 = [""];
 
 $(document).on("click", ".p1-rock", function() {
     database.ref().push({
-        p1Choice: "rock"
+        p1Choice: "rock",
+        player2Go: "Player 2 Go"
     });
-    var startDiv = $("<h3>");
-    startDiv.text("Player 2 Go");
-    $(".comp-messages").html(startDiv);
 });
+
+
 
 $(document).on("click", ".p2-rock", function() {
     database.ref().push({
@@ -201,18 +203,31 @@ $(document).on("click", ".p2-rock", function() {
 
 
 database.ref().on("child_added", function(childSnapshot) {
-    var hand1 = childSnapshot.val().p1Choice;
-    var hand2 = childSnapshot.val().p2Choice;
+    hand2 = childSnapshot.val().p2Choice;
+    pHand2.unshift(hand2);
+    console.log(pHand2[0]);
+    checkScore();
+});
 
-    if (hand1 === "rock" && hand2 === "rock") {
-        alert("tie");
-    }
-    
+database.ref().on("child_added", function(childSnapshot) {
+    hand1 = childSnapshot.val().p1Choice;
+    pHand1.unshift(hand1); 
+    console.log(pHand1[0]);
+    checkScore();
+});
+
+database.ref().on("child_added", function(childSnapshot) {
+    var startDiv = $("<h3>");
+    startDiv.text(childSnapshot.val().player2Go);
+    $(".comp-messages").html(startDiv);
 });
 
 
-
-
+function checkScore(){
+    if (pHand2[0] === "rock" && pHand1[0] === "rock") {
+        console.log("tie");
+    }
+};
 
 
 
