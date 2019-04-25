@@ -189,7 +189,6 @@ $(document).on("click", ".p1-rock", function() {
     database.ref().push({
         p1Choice: "rock"
     });
-    player2Turn();
 });
 
 
@@ -223,20 +222,7 @@ function checkScore(){
     }
 };
 
-//message for player 2 turn
-function player2Turn() {
 
-    count++
-    database.ref().set({
-        playerCounter: count
-    });
-
-    database.ref().on("value", function() {
-        var turnDiv = $("<h3>");
-        turnDiv.html("Player 2 Go");
-        $(".comp-messages").html(turnDiv);
-    });
-}
 
 
 //User messages logic 
