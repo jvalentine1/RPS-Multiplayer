@@ -185,21 +185,33 @@ database.ref().on("child_added", function(childSnapshot) {
 var pHand1 = [""];
 var pHand2 = [""];
 
+//player 1 chose rock
 $(document).on("click", ".p1-rock", function() {
     database.ref().push({
         p1Choice: "rock"
     });
 });
 
-
-
+//player 2 chose rock
 $(document).on("click", ".p2-rock", function() {
     database.ref().push({
         p2Choice: "rock"
     });
 });
 
+//player 1 chose paper
+$(document).on("click", ".p1-paper", function() {
+    database.ref().push({
+        p1Choice: "paper"
+    });
+});
 
+//player 2 chose paper
+$(document).on("click", ".p2-paper", function() {
+    database.ref().push({
+        p2Choice: "paper"
+    });
+});
 
 database.ref().on("child_added", function(childSnapshot) {
     hand2 = childSnapshot.val().p2Choice;
@@ -218,6 +230,9 @@ database.ref().on("child_added", function(childSnapshot) {
 //Checks score 
 function checkScore(){
     if (pHand2[0] === "rock" && pHand1[0] === "rock") {
+        console.log("tie");
+    }
+    else if (pHand2[0] === "paper" && pHand1[0] === "paper") {
         console.log("tie");
     }
 };
