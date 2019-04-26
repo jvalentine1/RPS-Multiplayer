@@ -191,6 +191,7 @@ $(document).on("click", ".p1-rock", function() {
     database.ref().push({
         p1Choice: "rock"
     });
+    player2Go();
 });
 
 //player 2 chose rock
@@ -245,6 +246,19 @@ database.ref().on("child_added", function(childSnapshot) {
     checkScore();
 });
 
+
+function player2Go() {
+    var newMove = $("<h3>");
+    database.ref().push({
+        p2Move: "Player 2 Go"
+    });
+    database.ref().on("child_added", function(snapshot) {
+        
+        newMove.text(snapshot.val().p2Move);
+        
+    });
+    $(".comp-messages").html(newMove);
+}
 //Checks score by refrencing player choice array
 function checkScore(){
     if (pHand2[0] === "rock" && pHand1[0] === "rock") {
@@ -254,8 +268,7 @@ function checkScore(){
             ties: ties
         });
         database.ref().on("value", function(childSnapshot) {
-            var gameTie = childSnapshot.val().ties;
-            $("#ties").html("Ties:" + gameTie);
+            $("#ties").html("Ties:" + childSnapshot.val().ties);
         });
 
     }
