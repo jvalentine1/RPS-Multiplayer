@@ -106,7 +106,7 @@ database.ref().on("value", function(childSnapshot) {
 // on click player 1 logic
 $(document).on("click", "#choice-1", function(e) {
     e.preventDefault();
-    $(".startClick-p1").html("YOU");
+    $(".startClick-p1").html("YOU P1");
     $(".startClick-p2").html("Opponent");
 
     count++
@@ -148,7 +148,7 @@ database.ref().on("child_added", function(childSnapshot) {
 //on click player 2 logic
 $(document).on("click", "#choice-2", function(e) {
     e.preventDefault();
-    $(".startClick-p2").html("YOU");
+    $(".startClick-p2").html("YOU P2");
     $(".startClick-p1").html("Opponent");
 
     var removeP2Btn = "";
