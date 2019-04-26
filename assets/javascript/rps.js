@@ -371,6 +371,21 @@ function player2Win () {
 //reset game logic
 $(".reset-game").on("click", function() {
     console.log("reset");
+    var clear1 = $("<h2>");
+    var clear2 = $("<h2>");
+    
+    database.ref().push({
+        clear: " "
+    });
+
+    database.ref().on("child_added", function(childSnapshot) {
+        clear1.text(childSnapshot.val().clear);
+        clear2.text(childSnapshot.val().clear);
+    });
+
+    $(".stats-1").html(clear1);
+    $(".stats-2").html(clear2);
+
     database.ref().set({
         playerCounter: 0
     });
