@@ -260,9 +260,11 @@ function checkScore(){
     }
     else if (pHand2[0] === "paper" && pHand1[0] === "paper") {
         console.log("tie");
+        playerTie();
     }
     else if (pHand2[0] === "scissors" && pHand1[0] === "scissors") {
         console.log("tie");
+        playerTie();
     }
     else if (pHand2[0] === "rock" && pHand1[0] === "paper") {
         console.log("p1 wins");
