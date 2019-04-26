@@ -1,70 +1,75 @@
 <!DOCTYPE html>
 <html lang="en-us">
-    <head>
-        <title>RPS</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Dokdo" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-    </head>
 
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 text-center mt-4 title-text">
-                </div>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-md-4 text-center fader fade-none player-1-field">
-                <h2 class="startClick-p1">Player 1</h2>
-                <div class="stats-1 mt-4"></div>
-                <br>
-                <div class="btn-group mt-3 player1-btn" role="group" aria-label="Basic example">
-                    <button type="button" id="rock-1" class="btn btn-secondary">Rock</button>
-                    <button type="button" id="paper-1" class="btn btn-secondary">Paper</button>
-                    <button type="button" id="scissors-1" class="btn btn-secondary">Scissors</button>
-                </div>
-            </div>
-            <div class="col-md-4 text-center mt-5 comp-messages"></div>
-            <div class="col-md-4 text-center fader fade-none player-2-field">
-                <h2 class="startClick-p2">Player 2</h2>
-                <div class="stats-2 mt-4"></div>
-                <br>
-                <div class="btn-group mt-3 player2-btn" role="group" aria-label="Basic example">
-                    <button type="button" id="rock-2" class="btn btn-secondary">Rock</button>
-                    <button type="button" id="paper-2" class="btn btn-secondary">Paper</button>
-                    <button type="button" id="scissors-2" class="btn btn-secondary">Scissors</button>
-                </div>
-            </div>
-        </div>
+<head>
+    <title>RPS</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Dokdo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.0.js"
+        integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 text-center mt-5 fader fade-none">
-                    <button type="submit" class="btn btn-primary mb-2 reset-game">Reset Game</button>
+            <div class="col-md-12 text-center mt-4 title-text">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-5 mt-2 ml-3 fader fade-none">
-                <form>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1" id="send-message">Send Message</label>
-                      <input type="text" class="form-control message-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Message">
-                    </div>
-                    <button type="submit" class="btn btn-primary submit-message">Send</button>
-                  </form>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-4 text-center fader fade-none player-1-field">
+            <h2 class="startClick-p1">Player 1</h2>
+            <div class="stats-1 mt-4"></div>
+            <br>
+            <div class="btn-group mt-3 player1-btn" role="group" aria-label="Basic example">
+                <button type="button" id="rock-1" class="btn btn-secondary">Rock</button>
+                <button type="button" id="paper-1" class="btn btn-secondary">Paper</button>
+                <button type="button" id="scissors-1" class="btn btn-secondary">Scissors</button>
             </div>
         </div>
-        <div class="row mt-3 ml-3">
-            <div class="col-md-5 fader fade-none message-host">
-                <p id="messages" class="text-center">Messages</p>
+        <div class="col-md-4 text-center mt-5 comp-messages"></div>
+        <div class="col-md-4 text-center fader fade-none player-2-field">
+            <h2 class="startClick-p2">Player 2</h2>
+            <div class="stats-2 mt-4"></div>
+            <br>
+            <div class="btn-group mt-3 player2-btn" role="group" aria-label="Basic example">
+                <button type="button" id="rock-2" class="btn btn-secondary">Rock</button>
+                <button type="button" id="paper-2" class="btn btn-secondary">Paper</button>
+                <button type="button" id="scissors-2" class="btn btn-secondary">Scissors</button>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center mt-5 fader fade-none">
+            <button type="submit" class="btn btn-primary mb-2 reset-game">Reset Game</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 mt-2 ml-3 fader fade-none">
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" id="send-message">Send Message</label>
+                    <input type="text" class="form-control message-input" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Your Message">
+                </div>
+                <button type="submit" class="btn btn-primary submit-message">Send</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-3 ml-3">
+        <div class="col-md-5 fader fade-none message-host">
+            <p id="messages" class="text-center">Messages</p>
+        </div>
+    </div>
 
-    </body>
+</body>
 
-    <script type="text/javascript" src="assets/javascript/rps.js"></script>
+<script type="text/javascript" src="assets/javascript/rps.js"></script>
+
 </html>

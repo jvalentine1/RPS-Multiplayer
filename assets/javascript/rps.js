@@ -27,7 +27,7 @@ var titleCount = 0;
 // var ties = 0;
 
 
-//title populate function
+//title populate function, 
 function openPage() {
 
     setInterval(titleRender, 50);
@@ -62,7 +62,7 @@ function chooseMessage() {
     var chooseAlert = $("<h3>");
     chooseAlert.addClass("fade-in");
     chooseAlert.text("Select A Player To Begin");
-//creates a div with player choice info and allows it to be removed once chosen, creates button divs and assigns them classes to be referenced
+//creates a div with player choice info and allows it to be removed once chosen, so a player can only choose one position
     var b1 = $("<div>");
     b1.addClass("remove-1")
     var button1 = $("<button>");
@@ -103,7 +103,8 @@ database.ref().on("value", function(childSnapshot) {
     }
 })
 
-// on click player 1 logic
+// on click player 1 logic this function pushes class names to the database and then assigns them to the buttons
+// this way a player cannot access another players buttons.
 $(document).on("click", "#choice-1", function(e) {
     e.preventDefault();
     $(".startClick-p1").html("YOU P1");
@@ -145,7 +146,7 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 
-//on click player 2 logic
+//on click player 2 logic (does the same logic as the above function just for the second player field).
 $(document).on("click", "#choice-2", function(e) {
     e.preventDefault();
     $(".startClick-p2").html("YOU P2");
@@ -188,7 +189,7 @@ database.ref().on("child_added", function(childSnapshot) {
 
 
 
-// Play Game logic
+// Play Game logic empty arrays that populate when a player chooses a hand
 var pHand1 = [""];
 var pHand2 = [""];
 
@@ -364,7 +365,7 @@ function player2Win () {
     p.addClass("text-left");
     var newMessage = childSnapshot.val().message;
     p.html(newMessage);
-    $(".message-host").append(p);
+    $(".message-host").prepend(p);
 
 });
 
@@ -373,7 +374,7 @@ $(".reset-game").on("click", function() {
     console.log("reset");
     var clear1 = $("<h2>");
     var clear2 = $("<h2>");
-    
+
     database.ref().push({
         clear: " "
     });
