@@ -93,7 +93,13 @@ database.ref().on("value", function(childSnapshot) {
     if (count === 2) {
         var startDiv = $("<h3>");
         startDiv.text("Player 1 Go");
+        var then = $("<h3>");
+        then.text("Then");
+        var newDiv = $("<h3>");
+        newDiv.text("Player 2 Go");
         $(".comp-messages").html(startDiv);
+        $(".comp-messages").append(then);
+        $(".comp-messages").append(newDiv);
     }
 })
 
@@ -242,23 +248,10 @@ database.ref().on("child_added", function(childSnapshot) {
     hand1 = childSnapshot.val().p1Choice;
     pHand1.unshift(hand1); 
     console.log(pHand1[0]);
-    player2Go();
     checkScore();
 });
 
 
-function player2Go() {
-    var newMove = $("<h3>");
-    database.ref().push({
-        p2Move: "Player 2 Go"
-    });
-    database.ref().on("child_added", function(snapshot) {
-        
-        newMove.text(snapshot.val().p2Move);
-        
-    });
-    $(".comp-messages").html(newMove);
-}
 //Checks score by refrencing player choice array
 function checkScore(){
     if (pHand2[0] === "rock" && pHand1[0] === "rock") {
