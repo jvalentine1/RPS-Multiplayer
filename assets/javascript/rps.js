@@ -79,7 +79,7 @@ function chooseMessage() {
     button2.text("Player 2");
     b2.append(button2);
 
-    $(".comp-messages").append(chooseAlert);
+    $(".comp-messages").html(chooseAlert);
     $(".comp-messages").append(b1);
     $(".comp-messages").append(b2);
 }
@@ -322,5 +322,10 @@ function checkScore(){
 //reset game logic
 $(".reset-game").on("click", function() {
     console.log("reset");
+    database.ref().set({
+        playerCounter: 0
+    });
+
+    chooseMessage();
 });
 
