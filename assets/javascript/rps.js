@@ -266,36 +266,78 @@ function checkScore(){
     }
     else if (pHand2[0] === "rock" && pHand1[0] === "paper") {
         console.log("p1 wins");
+        player1Win();
     }
     else if (pHand2[0] === "paper" && pHand1[0] === "scissors") {
         console.log("p1 wins");
+        player1Win();
     }
     else if (pHand2[0] === "scissors" && pHand1[0] === "rock") {
         console.log("p1 wins");
+        player1Win();
     }
     else if (pHand2[0] === "rock" && pHand1[0] === "scissors") {
         console.log("p2 wins");
+        player2Win();
     }
     else if (pHand2[0] === "paper" && pHand1[0] === "rock") {
         console.log("p2 wins");
+        player2Win();
     }
     else if (pHand2[0] === "scissors" && pHand1[0] === "paper") {
         console.log("p2 wins");
+        player2Win();
     }
 };
 
 //tie function 
 function playerTie() {
     console.log("function run")
-    var tie = $("<h2>");
+    var tie1 = $("<h2>");
+    var tie2 = $("<h2>");
         database.ref().push({
             ties: "Tie"
         });
         database.ref().on("child_added", function(childSnapshot) {
-            tie.text(childSnapshot.val().ties);
+            tie1.text(childSnapshot.val().ties);
+            tie2.text(childSnapshot.val().ties);
         });
-        $(".stats-1").html(tie);
-        $(".stats-2").html(tie);
+        $(".stats-1").html(tie1);
+        $(".stats-2").html(tie2);
+}
+
+//player 1 win function
+function player1Win () {
+    console.log("win function run");
+    var win = $("<h2>");
+    var clear = $("<h2>");
+    database.ref().push({
+        wins: "Win",
+        clear: " "
+    });
+    database.ref().on("child_added", function(childSnapshot) {
+        win.text(childSnapshot.val().wins);
+        clear.text(childSnapshot.val().clear);
+    });
+    $(".stats-1").html(win);
+    $(".stats-2").html(clear);
+}
+
+//player 2 win function
+function player2Win () {
+    console.log("win function run");
+    var win = $("<h2>");
+    var clear = $("<h2>");
+    database.ref().push({
+        wins: "Win",
+        clear: " "
+    });
+    database.ref().on("child_added", function(childSnapshot) {
+        win.text(childSnapshot.val().wins);
+        clear.text(childSnapshot.val().clear);
+    });
+    $(".stats-2").html(win);
+    $(".stats-1").html(clear);
 }
 
 
