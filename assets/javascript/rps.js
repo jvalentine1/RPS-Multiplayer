@@ -191,7 +191,6 @@ $(document).on("click", ".p1-rock", function() {
     database.ref().push({
         p1Choice: "rock"
     });
-    player2Go();
 });
 
 //player 2 chose rock
@@ -243,6 +242,7 @@ database.ref().on("child_added", function(childSnapshot) {
     hand1 = childSnapshot.val().p1Choice;
     pHand1.unshift(hand1); 
     console.log(pHand1[0]);
+    player2Go();
     checkScore();
 });
 
