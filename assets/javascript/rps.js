@@ -294,7 +294,7 @@ function playerTie() {
         database.ref().on("child_added", function(childSnapshot) {
             tie.text(childSnapshot.val().ties);
         });
-        $(".stats-2").html(tie);
+        $(".stats-1").html(tie);
         $(".stats-2").html(tie);
 }
 
